@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
+from fastapi import FastAPI, Depends, HTTPException
 
 import models
 import schemas
@@ -61,7 +62,10 @@ def atualizar_tarefa(
     ).first()
 
     if not tarefa:
-        return {"erro": "Tarefa não encontrada"}
+        raise HTTPException(
+        status_code=404,
+        detail="Tarefa não encontrada"
+    )
 
     tarefa.titulo = dados.titulo
     tarefa.concluida = dados.concluida

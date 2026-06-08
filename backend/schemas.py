@@ -1,7 +1,19 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
 
 class TarefaCreate(BaseModel):
-    titulo: str
+    titulo: str = Field(
+        min_length=3,
+        max_length=100
+    )
+
+
+class TarefaUpdate(BaseModel):
+    titulo: str = Field(
+        min_length=3,
+        max_length=100
+    )
+    concluida: bool
 
 class TarefaResponse(BaseModel):
     id: int
@@ -10,7 +22,3 @@ class TarefaResponse(BaseModel):
 
     class Config:
         from_attributes = True
-
-class TarefaUpdate(BaseModel):
-    titulo: str
-    concluida: bool
