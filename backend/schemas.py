@@ -10,3 +10,7 @@ class TarefaResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+class TarefaUpdate(BaseModel):
+    titulo: str
+    concluida: bool
