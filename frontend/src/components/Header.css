@@ -1,0 +1,116 @@
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header__brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.header__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35);
+}
+
+.header__title {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.header__stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  min-width: 72px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.stat__number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat--total .stat__number {
+  color: var(--accent-light);
+}
+
+.stat--done .stat__number {
+  color: var(--success);
+}
+
+.stat--pending .stat__number {
+  color: var(--warning);
+}
+
+.stat__label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.header__progress {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--surface-lighter);
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--success));
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-bar__text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  min-width: 32px;
+  text-align: right;
+}

@@ -1,6 +1,6 @@
-from fastapi import FastAPI, Depends
-from sqlalchemy.orm import Session
 from fastapi import FastAPI, Depends, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.orm import Session
 
 import models
 import schemas
@@ -10,6 +10,14 @@ from models import Tarefa
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # dependência do banco
 def get_db():
