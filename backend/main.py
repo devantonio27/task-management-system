@@ -46,3 +46,27 @@ def listar_tarefas(
     db: Session = Depends(get_db)
 ):
     return db.query(Tarefa).all()
+
+@app.put(
+    "/tarefas/{tarefa_id}",
+    response_model=schemas.TarefaResponse
+)
+def atualizar_tarefa(
+    tarefa_id: int,
+    dados: schemas.TarefaUpdate,
+    db: Session = Depends(get_db)
+):
+    tarefa = db.query(Tarefa).filter(
+        Tarefa.id == tarefa_id
+    ).first()
+
+    if not tarefa:
+        return {"erro": "Tarefa não encontrada"}
+
+    tarefa.titulo = dados.titulo
+    tarefa.concluida = dados.concluida
+
+    db.commit()
+    db.refresh(tarefa)
+
+    return tarefa
