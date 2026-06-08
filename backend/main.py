@@ -37,3 +37,12 @@ def criar_tarefa(
     db.refresh(nova_tarefa)
 
     return nova_tarefa
+
+@app.get(
+    "/tarefas",
+    response_model=list[schemas.TarefaResponse]
+)
+def listar_tarefas(
+    db: Session = Depends(get_db)
+):
+    return db.query(Tarefa).all()
