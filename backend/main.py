@@ -69,4 +69,21 @@ def atualizar_tarefa(
     db.commit()
     db.refresh(tarefa)
 
-    return tarefa
+    return tarefa 
+
+@app.delete("/tarefas/{tarefa_id}")
+def remover_tarefa(
+    tarefa_id: int,
+    db: Session = Depends(get_db)
+):
+    tarefa = db.query(Tarefa).filter(
+        Tarefa.id == tarefa_id
+    ).first()
+
+    if not tarefa:
+        return {"erro": "Tarefa não encontrada"}
+
+    db.delete(tarefa)
+    db.commit()
+
+    return {"mensagem": "Tarefa removida"}
